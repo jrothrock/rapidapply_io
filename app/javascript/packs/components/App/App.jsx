@@ -4,6 +4,7 @@ import Home from "../Home/Home.jsx";
 import Nav from "../Nav/Nav.jsx";
 import SignIn from "../Auth/SignIn.jsx";
 import SignUp from "../Auth/SignUp.jsx";
+import Footer from "../Footer/Footer.jsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
