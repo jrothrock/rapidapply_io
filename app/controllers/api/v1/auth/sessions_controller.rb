@@ -1,32 +1,31 @@
+# frozen_string_literal: true
+
 class Api::V1::Auth::SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     user = User.find_by_credentials(
-      params[:username].downcase,
+      params[:email].downcase,
       params[:password]
     )
 
     if !user.nil?
       render json: {
-      token: user.token, 
-      data:{
-              username: user.username
-            }
+        token: user.token,
+        email: user.email
       }, status: :ok
 
-      return
+      nil
 
     else
-        render json: {}, status: :not_found
+      render json: {}, status: :not_found
     end
-  end 
+  end
 
   def destroy
-    if request.headers["Authorization"]
-      loggedOut = User.logout(request.headers["Authorization"].split(' ').last)
-        
+    if request.headers['Authorization']
+      loggedOut = User.logout(request.headers['Authorization'].split(' ').last)
+
       if loggedOut
         render json: {}, status: :ok
       else
@@ -34,8 +33,7 @@ class Api::V1::Auth::SessionsController < ApplicationController
         render json: {}, status: :unauthorized
       end
     else
-        render json: {}, status: :bad_request
+      render json: {}, status: :bad_request
     end
   end
-
 end
