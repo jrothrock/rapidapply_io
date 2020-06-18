@@ -1,0 +1,8 @@
+{
+  "projectId": "job-automater",
+  "baseUrl": "http://localhost:3000",
+  "env": {
+    "MAX_FETCH_BATCH_SIZE": 10
+  },
+  "integrationFolder": "cypress/tests"
+}

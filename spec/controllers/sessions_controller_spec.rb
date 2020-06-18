@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'api/v1/auth/sessions_controller'
 require 'rails_helper'
 
 RSpec.describe Api::V1::Auth::SessionsController, type: :controller do

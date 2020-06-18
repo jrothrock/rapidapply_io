@@ -1,6 +1,6 @@
 "use strict";
 
-import React, { useState } from "react";
+import React, { useState, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -26,7 +26,8 @@ function SignIn(props) {
   const updateLoggedIn = props.updateLoggedIn;
   const navigate = useNavigate();
 
-  function submitForm() {
+  function submitForm(e: React.MouseEvent) {
+    e.preventDefault();
     const token: string = (document.querySelector(
       "[name=csrf-token]"
     ) as HTMLElement).getAttribute("content");
@@ -64,41 +65,43 @@ function SignIn(props) {
               <div className="panel-heading">
                 <h2>Sign in</h2>
               </div>
-              <div className="panel-body">
-                <div className="input-field">
-                  <input
-                    className="input-lg"
-                    type="text"
-                    autoFocus={true}
-                    id="email"
-                    onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                      updateEmail(e.currentTarget.value)
-                    }
-                    required
-                  />
-                  <label htmlFor="email">Email</label>
+              <form>
+                <div className="panel-body">
+                  <div className="input-field">
+                    <input
+                      className="input-lg"
+                      type="text"
+                      autoFocus={true}
+                      name="email"
+                      onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                        updateEmail(e.currentTarget.value)
+                      }
+                      required
+                    />
+                    <label htmlFor="email">Email</label>
+                  </div>
+                  <div className="input-field">
+                    <input
+                      className="input-lg"
+                      type="password"
+                      name="password"
+                      onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                        updatePassword(e.currentTarget.value)
+                      }
+                      required
+                    />
+                    <label htmlFor="passwor">Password</label>
+                  </div>
+                  <div className="input-field">
+                    <button
+                      className="waves-effect waves-light btn"
+                      onClick={(e: React.MouseEvent) => submitForm(e)}
+                    >
+                      Sign In
+                    </button>
+                  </div>
                 </div>
-                <div className="input-field">
-                  <input
-                    className="input-lg"
-                    type="password"
-                    id="password"
-                    onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                      updatePassword(e.currentTarget.value)
-                    }
-                    required
-                  />
-                  <label htmlFor="passwor">Password</label>
-                </div>
-                <div className="input-field">
-                  <button
-                    className="waves-effect waves-light btn"
-                    onClick={() => submitForm()}
-                  >
-                    Log in
-                  </button>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

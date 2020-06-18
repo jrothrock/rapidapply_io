@@ -29,8 +29,10 @@ function Footer() {
         </div>
       </div>
       <div className="footer-copyright">
-        <div className="container">
-          © 2020 <a>Rapid Apply.</a> All Rights Reserved.
+        <div className="container footer-copyright-container">
+          <div className="footer-copyright-text">
+            © 2020 <a>Rapid Apply.</a> All Rights Reserved.
+          </div>
           <div className="grey-text text-lighten-4 right footer-social-icons">
             <a>
               <li>

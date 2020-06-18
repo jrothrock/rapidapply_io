@@ -1,5 +1,5 @@
 {
-  "name": "job_automater",
+  "name": "rapid_apply",
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.10.1",
@@ -7,7 +7,6 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
-    "@types/jest": "^26.0.0",
     "axios": "^0.19.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "materialize-css": "^1.0.0",
@@ -17,18 +16,21 @@
     "react-materialize": "^3.9.2",
     "react-router": "^6.0.0-alpha.5",
     "react-router-dom": "^6.0.0-alpha.5",
-    "ts-loader": "^7.0.5",
-    "turbolinks": "^5.2.0"
+    "ts-loader": "^7.0.5"
   },
   "version": "0.1.0",
   "devDependencies": {
     "@babel/preset-env": "^7.10.2",
+    "@testing-library/cypress": "^6.0.0",
+    "@types/jest": "^26.0.0",
     "@types/react": "^16.9.36",
     "@types/react-dom": "^16.9.8",
+    "@types/testing-library__cypress": "^5.0.5",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
     "@typescript-eslint/parser": "^3.3.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-jest": "^26.0.1",
+    "cypress": "^4.8.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^7.2.0",
@@ -45,6 +47,8 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint app/javascript/**",
-    "lint-fix": "eslint app/javascript/** --fix"
+    "lint:fix": "eslint app/javascript/** --fix",
+    "test:e2e": "cypress run",
+    "test:e2e:open": "cypress open"
   }
 }

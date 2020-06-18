@@ -16,67 +16,101 @@
 
  .main-home-container {
   .img-container {
-      height: calc(100vh - 64px);
-      background: #000;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */
-      width: 100vw;
-      opacity:0.7;
-      img {
-          opacity:0.4;
-          width:100%;
-          height:100%;
-      }
-  }
-
-  .info-container {
-    height: calc(100vh - 64px - 32px);
+    height: calc(100vh - 64px);
+    background: #000;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */
     width: 100vw;
-    position: relative;
-    font-style: italic;
-    top: calc(0px - 100vh + 128px + 14vh);
-    .top-info-container {
-        color:white;
-        text-align:center;
-        font-size:1.18em;
-        margin-top:5.5%;
-    }
-    .button-container {
-        position: relative;
-        top: calc((50vh - 64px - 32px) / 1.75);
-        text-align: center;
-        z-index:4;
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .info-container {
+      height: calc(100vh - 64px - 32px);
+      width: 100vw;
+      font-style: italic;
+      top: calc(0px - 100vh + 128px + 14vh);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .top-info-container {
+          color:white;
+          font-size:1.18em;
+      }
+      .button-container {
+          margin-top: 3%;
+      }
     }
   }
 }
 
-.footer-social-icons > a {
-  margin-right:5px;
+.footer-copyright-container{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  .footer-social-icons {
+    display: flex;
+    justify-content: flex-end;
+    a {
+      margin-right: 5px;
+      li {
+        list-style: none;
+        i {
+          width:35px;
+          height:35px;
+          line-height: 35px;
+          border: 1px solid #ebebeb;
+          text-align:center;
+          font-size:1.2em;
+          color: #ebebeb;
+        }
+      }
+    }
+  }
 }
 
-.footer-social-icons > a > li {
-    list-style: none;
-    display:inline;
+input:not([type]):focus:not([readonly]), 
+input[type="text"]:not(.browser-default):focus:not([readonly]), 
+input[type="password"]:not(.browser-default):focus:not([readonly]), 
+input[type="email"]:not(.browser-default):focus:not([readonly]), 
+input[type="url"]:not(.browser-default):focus:not([readonly]), 
+input[type="time"]:not(.browser-default):focus:not([readonly]), 
+input[type="date"]:not(.browser-default):focus:not([readonly]), 
+input[type="datetime"]:not(.browser-default):focus:not([readonly]), 
+input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), 
+input[type="tel"]:not(.browser-default):focus:not([readonly]), 
+input[type="number"]:not(.browser-default):focus:not([readonly]), 
+input[type="search"]:not(.browser-default):focus:not([readonly]), 
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #268be2;
+  box-shadow: 0px 1px 0px 0px #268be2;
+  -webkit-box-shadow: 0px 1px 0px 0px #268be2;
 }
 
-.footer-social-icons > a > li > i {
-  width:35px;
-  height:35px;
-  line-height: 35px;
-  border: 1px solid #ebebeb;
-  text-align:center;
-  font-size:1.2em;
-  color: #ebebeb;
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+input[type=password]:not(.browser-default):focus:not([readonly]) + label,
+input[type=email]:not(.browser-default):focus:not([readonly]) + label,
+input[type=url]:not(.browser-default):focus:not([readonly]) + label,
+input[type=time]:not(.browser-default):focus:not([readonly]) + label,
+input[type=date]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]) + label,
+input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
+input[type=number]:not(.browser-default):focus:not([readonly]) + label,
+input[type=search]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #268be2;
 }
 
 nav, .page-footer {
-  background-color:#674fe6 !important;
+  background-color:#674fe6;
 }
 
 .btn, .btn-large, .btn-small {
-  background-color: #268be2 !important;
+  background-color: #268be2;
 }
 
 .success-rounded {
-  background-color: #25c91a !important;
+  background-color: #25c91a;
   border-radius: 30px;
 }
 
