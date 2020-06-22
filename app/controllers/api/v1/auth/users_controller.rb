@@ -20,8 +20,6 @@ class Api::V1::Auth::UsersController < ApplicationController
       else
         if user.errors.key?(:email)
           render json: { email: true, message: 'Email is invalid' }, status: :bad_request
-        elsif user.errors.key?(:username)
-          render json: { username: true, message: 'non alphanumeric characters were used - (a-z,0-9,-,_ [case insensitive])' }, status: :bad_request
         else
           render json: { message: user.errors.full_messages }, status: :bad_request
         end

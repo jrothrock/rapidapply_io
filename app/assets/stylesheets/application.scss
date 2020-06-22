@@ -101,12 +101,20 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
   color: #268be2;
 }
 
+label.invalid {
+  color: #F44336;
+}
+
 nav, .page-footer {
   background-color:#674fe6;
 }
 
 .btn, .btn-large, .btn-small {
   background-color: #268be2;
+}
+
+.btn:hover, .btn:focus, .btn-large:hover, .btn-large:focus, .btn-small:hover, .btn-small:focus {
+  background-color: darken(#268be2, 10%);
 }
 
 .success-rounded {

@@ -18,6 +18,17 @@ RSpec.describe Api::V1::Auth::SessionsController, type: :controller do
         expect(User.first.token_string).not_to eq user.token_string
       end
     end
+
+    context 'with invalid attributes' do
+      it 'verifies that user can\'t login with incorrect password' do
+        expect(User.count).to eq 0
+        user = User.create!(first: 'test', last: 'test', email: 'test@test.com', password: 'test')
+        expect(User.count).to eq 1
+
+        post :create, params: { email: 'test@test.com', password: 'wrongpassword' }
+        expect(response.status).to eq(404)
+      end
+    end
   end
 
   describe 'POST #destroy' do

@@ -21,6 +21,8 @@ function SignUp(props) {
     password_confirmation: "",
   });
 
+  const [invalidEmail, setInvalidEmail] = useState<string | null>();
+
   function updateFirstName(firstname: string) {
     setUserInfo((prevState) => ({ ...prevState, firstname }));
   }
@@ -46,9 +48,12 @@ function SignUp(props) {
 
   function submitForm(e: React.MouseEvent) {
     e.preventDefault();
-    const token = (document.querySelector(
+    const crsfElement: HTMLElement = document.querySelector(
       "[name=csrf-token]"
-    ) as HTMLElement).getAttribute("content");
+    );
+    const token: string = crsfElement
+      ? crsfElement.getAttribute("content")
+      : "";
 
     axios.defaults.headers.common["X-CSRF-TOKEN"] = token;
 
@@ -72,17 +77,21 @@ function SignUp(props) {
         navigate("/");
       })
       .catch((error) => {
-        if (error.status === 409) {
+        if (error.response.status === 409) {
+          setInvalidEmail(userInfo.email);
           M.toast({
-            html: "Username Already Exists",
+            html: "Account Already Exists",
             displayLength: 3000,
-            classes: "rounded-error",
+            classes: "failure-rounded",
           });
-        } else if (error.status === 400 && error.responseJSON.email) {
+        } else if (
+          error.response.status === 400 &&
+          error.response.data.email === true
+        ) {
           M.toast({
             html: "Needs to be a valid email",
             displayLength: 3000,
-            classes: "rounded-error",
+            classes: "failure-rounded",
           });
         }
       });
@@ -103,6 +112,7 @@ function SignUp(props) {
                     <input
                       className="input-lg"
                       type="text"
+                      data-testid="firstname"
                       name="firstname"
                       autoFocus={true}
                       onChange={(e: React.FormEvent<HTMLInputElement>) =>
@@ -117,6 +127,7 @@ function SignUp(props) {
                       className="input-lg"
                       type="text"
                       name="lastname"
+                      data-testid="lastname"
                       onChange={(e: React.FormEvent<HTMLInputElement>) =>
                         updateLastName(e.currentTarget.value)
                       }
@@ -126,21 +137,34 @@ function SignUp(props) {
                   </div>
                   <div className="input-field">
                     <input
-                      className="input-lg"
+                      className={
+                        "input-lg " +
+                        (invalidEmail === userInfo.email ? "invalid" : "")
+                      }
                       type="email"
                       name="email"
+                      data-testid="email"
                       onChange={(e: React.FormEvent<HTMLInputElement>) =>
                         updateEmail(e.currentTarget.value)
                       }
                       required
                     />
-                    <label htmlFor="email">Email</label>
+                    <label
+                      htmlFor="email"
+                      className={
+                        (invalidEmail === userInfo.email ? "invalid" : "") +
+                        (userInfo.email != "" ? " active" : "")
+                      }
+                    >
+                      Email
+                    </label>
                   </div>
                   <div className="input-field">
                     <input
                       className="input-lg"
                       type="password"
                       name="password"
+                      data-testid="password"
                       onChange={(e: React.FormEvent<HTMLInputElement>) =>
                         updatePassword(e.currentTarget.value)
                       }
@@ -153,6 +177,7 @@ function SignUp(props) {
                       className="input-lg"
                       type="password"
                       name="password_confirmation"
+                      data-testid="password_confirmation"
                       onChange={(e: React.FormEvent<HTMLInputElement>) =>
                         updatePasswordConfirmation(e.currentTarget.value)
                       }

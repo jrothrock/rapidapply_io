@@ -21,7 +21,10 @@
   "version": "0.1.0",
   "devDependencies": {
     "@babel/preset-env": "^7.10.2",
+    "@babel/preset-typescript": "^7.10.1",
     "@testing-library/cypress": "^6.0.0",
+    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/react": "^10.3.0",
     "@types/jest": "^26.0.0",
     "@types/react": "^16.9.36",
     "@types/react-dom": "^16.9.8",
@@ -38,6 +41,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
     "jest": "^26.0.1",
+    "msw": "^0.19.4",
     "prettier": "2.0.5",
     "react-test-renderer": "^16.13.1",
     "source-map-loader": "^1.0.0",
@@ -50,5 +54,13 @@
     "lint:fix": "eslint app/javascript/** --fix",
     "test:e2e": "cypress run",
     "test:e2e:open": "cypress open"
+  },
+  "jest": {
+    "setupFiles": ["./jest/jest.setup.js"],
+    "testMatch": [ "/**/*.test.tsx"],
+    "moduleDirectories": ["node_modules", "app/assets/", "app/javascript"],
+    "moduleNameMapper": { 
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/jest/assetsTransformer.js"
+    }
   }
 }

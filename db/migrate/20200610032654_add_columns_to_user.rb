@@ -12,7 +12,7 @@ class AddColumnsToUser < ActiveRecord::Migration[6.0]
     add_column :users, :token, :string
     add_column :users, :token_string, :string
 
-    add_index :users, :email
+    add_index :users, :email, unique: true
     add_index :users, :reset_password_token
     add_index :users, :token_string
   end

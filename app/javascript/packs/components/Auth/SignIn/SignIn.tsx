@@ -28,9 +28,12 @@ function SignIn(props) {
 
   function submitForm(e: React.MouseEvent) {
     e.preventDefault();
-    const token: string = (document.querySelector(
+    const crsfElement: HTMLElement = document.querySelector(
       "[name=csrf-token]"
-    ) as HTMLElement).getAttribute("content");
+    );
+    const token: string = crsfElement
+      ? crsfElement.getAttribute("content")
+      : "";
 
     axios.defaults.headers.common["X-CSRF-TOKEN"] = token;
 
@@ -46,7 +49,7 @@ function SignIn(props) {
         navigate("/");
       })
       .catch((error) => {
-        if (error.status === 404) {
+        if (error.response.status === 404) {
           M.toast({
             html: "The Username or Password Is Incorrect",
             displayLength: 3000,
@@ -73,6 +76,7 @@ function SignIn(props) {
                       type="text"
                       autoFocus={true}
                       name="email"
+                      data-testid="email"
                       onChange={(e: React.FormEvent<HTMLInputElement>) =>
                         updateEmail(e.currentTarget.value)
                       }
@@ -85,6 +89,7 @@ function SignIn(props) {
                       className="input-lg"
                       type="password"
                       name="password"
+                      data-testid="password"
                       onChange={(e: React.FormEvent<HTMLInputElement>) =>
                         updatePassword(e.currentTarget.value)
                       }
